@@ -63,7 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '450790422852',
     projectId: 'aora-c1702',
     storageBucket: 'aora-c1702.firebasestorage.app',
-    iosBundleId: 'com.example.aora',
+    iosBundleId: 'com.aora.app',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -72,7 +72,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '450790422852',
     projectId: 'aora-c1702',
     storageBucket: 'aora-c1702.firebasestorage.app',
-    iosBundleId: 'com.example.aora',
+    iosBundleId: 'com.aora.app',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(

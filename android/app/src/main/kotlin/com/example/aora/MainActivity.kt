@@ -1,4 +1,4 @@
-package com.example.aora
+package com.aora.app
 
 import io.flutter.embedding.android.FlutterActivity
 
