@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "450790422852",
+    "project_id": "aora-c1702",
+    "storage_bucket": "aora-c1702.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450790422852:android:13e0b46d7deed05a29ff11",
+        "android_client_info": {
+          "package_name": "com.aora.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtIWmkGBWOZVfI1r7evEkgFuswFzwl_rU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
