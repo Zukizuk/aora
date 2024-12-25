@@ -7,13 +7,15 @@ class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
   bool obscureText;
   final bool isPasswordField;
+  String errorMessage;
   CustomTextField(
       {super.key,
       required this.label,
       required this.hint,
       required this.controller,
       this.obscureText = false,
-      this.isPasswordField = false});
+      this.isPasswordField = false,
+      this.errorMessage = ''});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -46,6 +48,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             color: Colors.white,
             fontSize: 16,
           ),
+          validator: (value) => value!.isEmpty ? widget.errorMessage : null,
           decoration: InputDecoration(
             fillColor: AppColors.field,
             filled: true,

@@ -1,10 +1,23 @@
+import 'package:aora/components/services/auth_services.dart';
+import 'package:aora/components/services/user.services.dart';
 import 'package:aora/components/widgets/gradient_button.dart';
 import 'package:aora/components/widgets/video.dart';
 import 'package:aora/utils/theme.dart';
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatelessWidget {
-  ProfilePage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  final _authService = AuthService();
+
+  final userServices = UserService();
+  String username = '';
+
   final videos = [
     {
       'videoUrl': 'assets/images/video.png',
@@ -21,6 +34,21 @@ class ProfilePage extends StatelessWidget {
     },
   ];
 
+  void fetchUser() async {
+    final user = await userServices.getCurrentUser();
+    if (user != null) {
+      setState(() {
+        username = user['username'];
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,9 +60,14 @@ class ProfilePage extends StatelessWidget {
               children: [
                 Container(
                   padding: EdgeInsets.only(right: 24),
-                  child: Icon(
-                    Icons.logout,
-                    color: Colors.red,
+                  child: GestureDetector(
+                    onTap: () async {
+                      await _authService.signOut();
+                    },
+                    child: Icon(
+                      Icons.logout,
+                      color: Colors.red,
+                    ),
                   ),
                 ),
               ],
@@ -63,7 +96,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Zuki',
+                    username,
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -143,6 +176,7 @@ class ProfilePage extends StatelessWidget {
               ),
               GradientButton(
                 text: 'Back to Explore',
+                onPressed: () {},
               ),
             ],
             for (final video in videos)

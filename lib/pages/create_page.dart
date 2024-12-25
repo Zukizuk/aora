@@ -108,6 +108,7 @@ class CreatePage extends StatelessWidget {
                   width: double.infinity,
                   child: GradientButton(
                     text: 'Submit & Publish',
+                    onPressed: () {},
                   ),
                 ),
               ),

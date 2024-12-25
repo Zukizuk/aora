@@ -1,8 +1,16 @@
+import 'package:aora/utils/theme.dart';
 import 'package:flutter/material.dart';
 
 class GradientButton extends StatelessWidget {
   final String text;
-  const GradientButton({super.key, required this.text});
+  final void Function() onPressed;
+  bool isLoading = false;
+
+  GradientButton(
+      {super.key,
+      required this.text,
+      required this.onPressed,
+      this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +25,19 @@ class GradientButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: onPressed,
         minWidth: 327,
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: 16,
-            color: Theme.of(context).colorScheme.surface,
-          ),
-        ),
+        child: isLoading
+            ? CircularProgressIndicator(
+                color: AppColors.background,
+              )
+            : Text(
+                text,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(context).colorScheme.surface,
+                ),
+              ),
       ),
     );
   }

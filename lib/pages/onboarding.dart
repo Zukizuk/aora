@@ -90,6 +90,7 @@ class Onboarding extends StatelessWidget {
           const SizedBox(height: 25),
           GradientButton(
             text: 'Continue with Email',
+            onPressed: () {},
           ),
         ],
       ),

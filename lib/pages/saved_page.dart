@@ -1,4 +1,3 @@
-import 'package:aora/components/widgets/carousel_slider.dart';
 import 'package:aora/components/widgets/video.dart';
 import 'package:aora/utils/theme.dart';
 import 'package:flutter/material.dart';

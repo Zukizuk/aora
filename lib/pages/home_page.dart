@@ -1,3 +1,4 @@
+import 'package:aora/components/services/user.services.dart';
 import 'package:aora/components/widgets/carousel_slider.dart';
 import 'package:aora/components/widgets/video.dart';
 import 'package:aora/utils/theme.dart';
@@ -12,6 +13,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   TextEditingController searchController = TextEditingController();
+  final userServices = UserService();
+
+  String username = '';
 
   final posts = [
     {
@@ -61,6 +65,21 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void fetchUser() async {
+    final user = await userServices.getCurrentUser();
+    if (user != null) {
+      setState(() {
+        username = user['username'];
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -77,6 +96,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               response.isNotEmpty
@@ -91,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                             Text(
                               response.isNotEmpty
                                   ? searchController.text.trim()
-                                  : 'John Doe'.toLowerCase(),
+                                  : username.toLowerCase(),
                               style: TextStyle(
                                 fontSize: 24.0,
                                 fontWeight: FontWeight.bold,
